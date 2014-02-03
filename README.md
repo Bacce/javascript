@@ -1,13 +1,13 @@
 # Airbnb JavaScript Style Guide() {
 
-*A mostly reasonable approach to JavaScript*
+*A JavaScript legésszerűbb megközelítése*
 
 
-## <a name='TOC'>Table of Contents</a>
+## <a name='TOC'>Tartalomjegyzék</a>
 
-  1. [Types](#types)
-  1. [Objects](#objects)
-  1. [Arrays](#arrays)
+  1. [Típusok](#types)
+  1. [Objektumok](#objects)
+  1. [Tömbök](#arrays)
   1. [Strings](#strings)
   1. [Functions](#functions)
   1. [Properties](#properties)
@@ -36,9 +36,10 @@
   1. [Contributors](#contributors)
   1. [License](#license)
 
-## <a name='types'>Types</a>
+## <a name='types'>Típusok</a>
 
   - **Primitives**: When you access a primitive type you work directly on its value
+  - **Egyszerűek**: Amikor egyszerű típust módosítasz, közvetlenül az értékén módosítasz.
 
     + `string`
     + `number`
@@ -55,6 +56,7 @@
     console.log(foo, bar); // => 1, 9
     ```
   - **Complex**: When you access a complex type you work on a reference to its value
+  - **Komplex**: Amikor komplex típussal dolgozol, az érték referenciáján módosítasz.
 
     + `object`
     + `array`
@@ -71,28 +73,30 @@
 
     **[[⬆]](#TOC)**
 
-## <a name='objects'>Objects</a>
+## <a name='objects'>Objektumok</a>
 
   - Use the literal syntax for object creation.
+  - Használd a rövidített szintaxtist objektum létrehozására.
 
     ```javascript
-    // bad
+    // helytelen
     var item = new Object();
 
-    // good
+    // helyes
     var item = {};
     ```
 
   - Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61)
+  - Ne használj [fenntartott kifejezést](http://es5.github.io/#x7.6.1) kulcsként. Nem fog működni IE8-ba. [További információ](https://github.com/airbnb/javascript/issues/61)
 
     ```javascript
-    // bad
+    // helytelen
     var superman = {
       default: { clark: 'kent' },
       private: true
     };
 
-    // good
+    // helyes
     var superman = {
       defaults: { clark: 'kent' },
       hidden: true
@@ -100,67 +104,72 @@
     ```
 
   - Use readable synonyms in place of reserved words.
+  - Használj szinonímákat a fenntartott kifejezések helyett.
 
     ```javascript
-    // bad
+    // helytelen
     var superman = {
       class: 'alien'
     };
 
-    // bad
+    // helytelen
     var superman = {
       klass: 'alien'
     };
 
-    // good
+    // helyes
     var superman = {
       type: 'alien'
     };
     ```
     **[[⬆]](#TOC)**
 
-## <a name='arrays'>Arrays</a>
+## <a name='arrays'>Tömbök</a>
 
   - Use the literal syntax for array creation
+  - Használd a rövidített szintaxtist tömb létrehozására.
 
     ```javascript
-    // bad
+    // helytelen
     var items = new Array();
 
-    // good
+    // helyes
     var items = [];
     ```
 
   - If you don't know array length use Array#push.
+  - Ha nem ismered a tömb hosszát használd az Array#push-t.
 
     ```javascript
     var someStack = [];
 
 
-    // bad
+    // helytelen
     someStack[someStack.length] = 'abracadabra';
 
-    // good
+    // helyes
     someStack.push('abracadabra');
     ```
 
   - When you need to copy an array use Array#slice. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
+  - Ha tömböt másolsz használd az Array#slice-t. [jsPerf](http://jsperf.com/converting-arguments-to-an-array/7)
 
     ```javascript
     var len = items.length,
         itemsCopy = [],
         i;
 
-    // bad
+    // helytelen
     for (i = 0; i < len; i++) {
       itemsCopy[i] = items[i];
     }
 
-    // good
+    // helyes
     itemsCopy = items.slice();
     ```
 
   - To convert an array-like object to an array, use Array#slice.
+  - Ha tömbhöz hasonló objektumot konvertálsz tömbbé, használd az Array#slice-t.
 
     ```javascript
     function trigger() {
@@ -172,32 +181,35 @@
     **[[⬆]](#TOC)**
 
 
-## <a name='strings'>Strings</a>
+## <a name='strings'>Sztringek</a>
 
   - Use single quotes `''` for strings
+  - Használj szimpla idézőjelet `''` sztringekhez
 
     ```javascript
-    // bad
+    // helytelen
     var name = "Bob Parr";
 
-    // good
+    // helyes
     var name = 'Bob Parr';
 
-    // bad
+    // helytelen
     var fullName = "Bob " + this.lastName;
 
-    // good
+    // helyes
     var fullName = 'Bob ' + this.lastName;
     ```
 
   - Strings longer than 80 characters should be written across multiple lines using string concatenation.
+  - 80 karakternél hosszabb sztingek több sorba érdemes írni, sztring láncolat használatával.
   - Note: If overused, long strings with concatenation could impact performance. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
+  - Jegyzet: Ha túl sokszor használjuk, hosszú láncolt sztingek hatással lehetnek a teljesítményre. [jsPerf](http://jsperf.com/ya-string-concat) & [Discussion](https://github.com/airbnb/javascript/issues/40)
 
     ```javascript
-    // bad
+    // helytelen
     var errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
 
-    // bad
+    // helytelen
     var errorMessage = 'This is a super long error that \
     was thrown because of Batman. \
     When you stop to think about \
@@ -206,7 +218,7 @@
     fast.';
 
 
-    // good
+    // helyes
     var errorMessage = 'This is a super long error that ' +
       'was thrown because of Batman. ' +
       'When you stop to think about ' +
@@ -216,6 +228,7 @@
     ```
 
   - When programatically building up a string, use Array#join instead of string concatenation. Mostly for IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
+  - Ha programmal építessz fel egy sztringet, használj Array#join -t sztring láncolás helyett. Leginkább az IE miatt: [jsPerf](http://jsperf.com/string-vs-array-concat/2).
 
     ```javascript
     var items,
@@ -236,7 +249,7 @@
 
     length = messages.length;
 
-    // bad
+    // helytelen
     function inbox(messages) {
       items = '<ul>';
 
@@ -247,7 +260,7 @@
       return items + '</ul>';
     }
 
-    // good
+    // helyes
     function inbox(messages) {
       items = [];
 
@@ -1505,6 +1518,7 @@
   - :fr: **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
   - :ru: **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
   - :bg: **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
+  - :hu: **Hungarian**: [bacce/javascript](https://github.com/bacce/javascript)
 
 ## <a name='guide-guide'>The JavaScript Style Guide Guide</a>
 
