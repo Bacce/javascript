@@ -1518,7 +1518,7 @@
   - :fr: **French**: [nmussy/javascript-style-guide](https://github.com/nmussy/javascript-style-guide)
   - :ru: **Russian**: [uprock/javascript](https://github.com/uprock/javascript)
   - :bg: **Bulgarian**: [borislavvv/javascript](https://github.com/borislavvv/javascript)
-  - :hu: **Hungarian**: [bacce/javascript](https://github.com/bacce/javascript)
+  - :heart::white_circle::green_heart: **Hungarian**: [bacce/javascript](https://github.com/bacce/javascript)
 
 ## <a name='guide-guide'>The JavaScript Style Guide Guide</a>
 
